@@ -1,6 +1,5 @@
 body {
   font-family: sans-serif;
-
 }
 
 #hider {
@@ -15,7 +14,7 @@ body {
   padding: 50px 150px;
 }
 
-.title{
+.title {
   margin: 0 auto;
 }
 
@@ -26,11 +25,18 @@ body {
   justify-content: space-between;
 }
 
-
 .task__step {
- flex: 1
+  flex: 1;
 }
 
- span{
+span {
   font-weight: bold;
+}
+
+#detail {
+  display: block;
+  width: 1000px;
+  height: 500px;
+  border: 2px solid;
+  margin: 40px auto;
 }

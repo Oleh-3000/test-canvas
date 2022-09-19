@@ -197,18 +197,87 @@ require("./styles.css");
 var detail = {
   length: 350,
   width: 250,
-  lt: {},
-  lb: {},
+  lt: {
+    radius: 0
+  },
+  lb: {
+    radius: 0
+  },
   rt: {
     radius: 50
   },
-  rb: {}
+  rb: {
+    radius: 0
+  }
 };
 {
-  //your code here....
   var app = document.getElementById("app");
-  var leftAngleInput = document.getElementById("leftAngleInput");
+  var detailCanvas = document.getElementById("detail");
+  var heightInput = document.getElementById("heightInput");
+  var widthInput = document.getElementById("widthInput");
+  var rightAngleInput = document.getElementById("rightAngleInput");
   var rotateZ = document.getElementById("rotateZ");
+  var pi = Math.PI; //your code here....
+
+  function drowDetail(_ref, rotate) {
+    var width = _ref.width,
+        length = _ref.length,
+        rt = _ref.rt;
+
+    if (detailCanvas.getContext) {
+      var ctx = detailCanvas.getContext("2d");
+      var start = {
+        x: (detailCanvas.width - length) / 2,
+        y: (detailCanvas.height - width) / 2
+      };
+      ctx.clearRect(0, 0, detailCanvas.width, detailCanvas.height);
+      ctx.beginPath();
+      ctx.moveTo(start.x, start.y);
+      ctx.lineTo(start.x + length - rt.radius, start.y);
+      ctx.moveTo(start.x, start.y);
+      ctx.lineTo(start.x, start.y + width);
+      ctx.lineTo(start.x + length, start.y + width);
+      ctx.lineTo(start.x + length, start.y + rt.radius);
+      ctx.stroke();
+      ctx.arc(start.x + length - rt.radius, start.y + rt.radius, rt.radius, 0, -pi / 2, true);
+      ctx.stroke();
+
+      if (rotate) {
+        ctx.translate(start.x + length / 2, start.y + width / 2);
+        ctx.rotate(pi / 2);
+        ctx.translate(-(start.x + length / 2), -(start.y + width / 2));
+      }
+    }
+  }
+
+  drowDetail(detail);
+  heightInput.addEventListener("change", function (e) {
+    var height = parseInt(e.target.value);
+
+    if (!isNaN(height)) {
+      detail.length = height;
+      drowDetail(detail);
+    }
+  });
+  widthInput.addEventListener("change", function (e) {
+    var width = parseInt(e.target.value);
+
+    if (!isNaN(width)) {
+      detail.width = width;
+      drowDetail(detail);
+    }
+  });
+  rightAngleInput.addEventListener("change", function (e) {
+    var radius = parseInt(e.target.value);
+
+    if (!isNaN(radius)) {
+      detail.rt.radius = radius;
+      drowDetail(detail);
+    }
+  });
+  rotateZ.addEventListener("click", function () {
+    drowDetail(detail, true);
+  });
 }
 },{"./styles.css":"src/styles.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -238,7 +307,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54806" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46615" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

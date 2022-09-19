@@ -9,7 +9,7 @@
     <label for="hider">Скрыть задание</label>
     <input id="hider" type="checkbox" class="taks-hider">
     <div class="task">
-      <h3 class="titel">
+      <h3 class="title">
         Вам нужно дополнить страницу, в центре которой создать поле для
         отрисовки детали с помощью «canvas» или «SVG».
       </h3>
@@ -25,24 +25,28 @@
       <div class="task__step">
         <img src="/2.468de0c3.png">
         <p>
-          
           При изменении радиуса детали она должна перерисоваться (<span>detail.rt.radius = 80</span>)
         </p>
       </div>
       <div class="task__step">
         <img src="/3.2323d4b4.png">
         <p>
-          При каждом нажатии кнопки разворота деталь должна повернуться на <span>90°</span>
-          по оси <span>Z</span>
+          При каждом нажатии кнопки разворота меняем объект и перерисовываем деталь таким образом, чтобы она повернулась на <span>90°</span>
         </p>
       </div>
     </div>
+    
+    <canvas id="detail" width='1000' height=500></canvas>
 
     <div id="app">
       <div class="control">
-        <button id="rotateZ">Вращение Z ⭮</button>
+        <button id="rotateZ">Вращение ⭮</button>
+        <span> Длина детали: </span>
+        <input id="heightInput" placeholder="Длина:" type="text">
+        <span> Ширина детали: </span>
+        <input id="widthInput" placeholder="Ширина:" type="text">
         <span> Радиус правого угла: </span>
-        <input id="leftAngleInput" placeholder="Радиус:" type="text">
+        <input id="rightAngleInput" placeholder="Радиус:" type="text">
       </div>
     </div>
     <script src="/src.a2b27638.js"></script>
